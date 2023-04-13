@@ -1,0 +1,11 @@
+  <div>
+  <h1> <%=@blog.title%></h2>
+  <p><%=@blog.body%></p>
+  </div>
+   <% if user_signed_in?%>
+    <div>
+    <%= button_to "Edit", edit_blog_path, method: :get %>
+    <%= button_to "Delete", blog_path, method: :delete, data: {turbo_confirm: "You want to delete Blog: #{@blog.title}"}%>
+    <%= button_to "#{ @blog.archived ? "Unarchive" : "Archive"}", archive_blog_path(@blog), method: :patch%>
+    </div>
+  <%end%>

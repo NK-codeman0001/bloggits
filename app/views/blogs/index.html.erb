@@ -1,0 +1,67 @@
+<h1>My Blogs  <%= link_to "(+)", new_blog_path, {:style=> 'text-decoration: none;'} if user_signed_in?%></h1> 
+<% if user_signed_in? == false%>
+  <ol>
+  <% @blogs.each do |blog| %>
+    <% if !(blog.archived) && blog.published?%>
+      <div>
+        <h3><li> <%=link_to blog.title, blog_path(blog) %></h3>
+        <p><%=blog.body%></p>
+      </div>
+    <%end%>
+  <%end%>
+  </ol>
+
+
+<%elsif%>
+    <h2>Published</h2>
+    <ol>
+    <% @blogs.published.each do |blog| %>
+      <% unless blog.archived%>
+        <div>
+          <h3><li> <%=link_to blog.title, blog_path(blog) %></h3>
+          <p><%=blog.body%></p>
+        </div>
+      <%end%>
+    <%end%>
+    </ol>
+    <hr>
+
+    <h2>Draft</h2>
+    <ol>
+    <% @blogs.draft.each do |blog| %>
+      <div>
+        <h3><li> <%=link_to blog.title, blog_path(blog) %></h3>
+        <p><%=blog.body%></p>
+      </div>
+    <%end%>
+    </ol>
+    <hr>
+
+
+    <h2>Scheduled</h2>
+    <ol>
+    <% @blogs.scheduled.each do |blog| %>
+      <div>
+        <h3><li> <%=link_to blog.title, blog_path(blog) %></h3>
+        <p><%=blog.body%></p>
+      </div>
+    <%end%>
+    </ol>
+    <hr>
+
+    <%if @blogs.where(archived: true).any?%>
+    <h2>Archived</h2>
+    <ol>
+    <% @blogs.each do |blog| %>
+      <% if blog.archived%>
+        <div>
+          <h3><li> <%=link_to blog.title, blog_path(blog) %></h3>
+          <p><%=blog.body%></p>
+        </div>
+      <%end%>
+    <%end%>
+    </ol>
+    <hr>
+    <%end%>
+
+<% end %>

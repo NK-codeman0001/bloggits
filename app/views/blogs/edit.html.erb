@@ -1,0 +1,4 @@
+<h1>Edit Blog</h1>
+<%= render partial: "form", locals: {model_name: @blog} %>
+<div>
+ <%= button_to "Delete", blog_path, method: :delete, data: {turbo_confirm: "You want to delete Blog: #{@blog.title}"}%>

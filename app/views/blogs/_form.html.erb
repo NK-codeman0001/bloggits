@@ -1,0 +1,27 @@
+<%= form_with model:model_name do |form|%>
+  <div style="color: red;" >
+    <% if form.object.errors.any? %>
+    <ul>
+      <% form.object.errors.each do |err| %>
+        <li><%= err.full_message%><br>
+      <% end %>
+    </ul>
+    <%end%>
+  </div>
+  <div>
+  <%= form.label :title%>
+  <%= form.text_field :title%>
+  </div>
+
+  <div>
+  <%= form.label :body%>
+  <%= form.text_area :body%>
+  </div>
+
+  <div>
+  <%= form.label :published_at%>
+  <%= form.datetime_select :published_at, include_blank: true, start_year: Time.now.year%>
+  </div>
+
+<%= form.submit%>
+<%end%>
