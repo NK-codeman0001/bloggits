@@ -60,7 +60,7 @@ class BlogsController < ApplicationController
   end
 
   def blog_params
-    params.require(:blog).permit(:title,:body,:archived,:published_at)
+    params.require(:blog).permit(:title,:content,:archived,:published_at)
     
   end
 end
