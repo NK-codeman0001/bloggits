@@ -6,6 +6,9 @@ class BlogsController < ApplicationController
     @blogs = user_signed_in? ? Blog.all.order(published_at: :desc) : Blog.all.published.order(published_at: :desc)
     # @pagy, @records = pagy(Product.all)
     @pagy, @blogs = pagy(@blogs)
+    rescue Pagy::OverflowError
+      redirect_to root_path(page: 1)
+
   end
 
   def show
