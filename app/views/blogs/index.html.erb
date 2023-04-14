@@ -5,7 +5,7 @@
     <% if !(blog.archived) && blog.published?%>
       <div>
         <h3><li> <%=link_to blog.title, blog_path(blog) %></h3>
-        <p><%=blog.body%></p>
+        <p><%=blog.content%></p>
       </div>
     <%end%>
   <%end%>
@@ -19,7 +19,7 @@
       <% unless blog.archived%>
         <div>
           <h3><li> <%=link_to blog.title, blog_path(blog) %></h3>
-          <p><%=blog.body%></p>
+          <p><%=blog.content%></p>
         </div>
       <%end%>
     <%end%>
@@ -31,7 +31,7 @@
     <% @blogs.draft.each do |blog| %>
       <div>
         <h3><li> <%=link_to blog.title, blog_path(blog) %></h3>
-        <p><%=blog.body%></p>
+        <p><%=blog.content%></p>
       </div>
     <%end%>
     </ol>
@@ -43,7 +43,7 @@
     <% @blogs.scheduled.each do |blog| %>
       <div>
         <h3><li> <%=link_to blog.title, blog_path(blog) %></h3>
-        <p><%=blog.body%></p>
+        <p><%=blog.content%></p>
       </div>
     <%end%>
     </ol>
@@ -56,7 +56,7 @@
       <% if blog.archived%>
         <div>
           <h3><li> <%=link_to blog.title, blog_path(blog) %></h3>
-          <p><%=blog.body%></p>
+          <p><%=blog.content%></p>
         </div>
       <%end%>
     <%end%>
