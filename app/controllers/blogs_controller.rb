@@ -4,6 +4,8 @@ class BlogsController < ApplicationController
   before_action :set_blog, except: [:index, :new, :create]
   def index    
     @blogs = user_signed_in? ? Blog.all.order(published_at: :desc) : Blog.all.published.order(published_at: :desc)
+    # @pagy, @records = pagy(Product.all)
+    @pagy, @blogs = pagy(@blogs)
   end
 
   def show
