@@ -8,6 +8,7 @@ class Blog < ApplicationRecord
   scope :draft, -> { where(published_at: nil)}
   scope :published, -> { where("published_at <= ?", Time.current) }
   scope :scheduled, -> { where("published_at > ?", Time.current)}
+  scope :archived, -> { where(archived: true)}
 
   def draft?
     published_at.nil?

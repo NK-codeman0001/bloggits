@@ -1,14 +1,35 @@
 class BlogsController < ApplicationController
   
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_blog, except: [:index, :new, :create]
+  before_action :set_blog, except: [:index, :new, :create, :scheduled, :draft, :archived]
   def index    
-    @blogs = user_signed_in? ? Blog.all.order(published_at: :desc) : Blog.all.published.order(published_at: :desc)
+    @blogs = Blog.all.published.order(published_at: :desc)
     # @pagy, @records = pagy(Product.all)
     @pagy, @blogs = pagy(@blogs)
     rescue Pagy::OverflowError
       redirect_to root_path(page: 1)
 
+  end
+
+  def scheduled
+    @blogs = Blog.all.scheduled.order(published_at: :desc)
+    @pagy, @blogs = pagy(@blogs)
+    rescue Pagy::OverflowError
+      redirect_to root_path(page: 1)
+  end
+
+  def draft
+    @blogs = Blog.all.draft.order(created_at: :desc)
+    @pagy, @blogs = pagy(@blogs)
+    rescue Pagy::OverflowError
+      redirect_to root_path(page: 1)
+  end
+
+  def archived
+    @blogs = Blog.all.archived.order(updated_at: :desc)
+    @pagy, @blogs = pagy(@blogs)
+    rescue Pagy::OverflowError
+      redirect_to root_path(page: 1)
   end
 
   def show
