@@ -20,7 +20,7 @@
 
   <div>
   <%= form.label :published_at%>
-  <%= form.datetime_select :published_at, include_blank: true, start_year: Time.now.year%>
+  <%= form.datetime_select :published_at, include_blank: true, start_year: Time.now.year, time_zone: 'New Delhi'%>
   </div>
 
 <%= form.submit%>
