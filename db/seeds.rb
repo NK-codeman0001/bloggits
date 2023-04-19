@@ -10,7 +10,8 @@ adminuser = User.where(email: "admin.user@bloggits.com").first_or_initialize
 
 adminuser.update(
   password: "changeit",
-  password_confirmation: "changeit"
+  password_confirmation: "changeit",
+  is_admin: true
 )
 
 

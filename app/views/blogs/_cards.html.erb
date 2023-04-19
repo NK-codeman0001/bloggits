@@ -1,4 +1,4 @@
-<h1>My Blogs  <%= link_to "(+)", new_blog_path, {:style=> 'text-decoration: none;'} if user_signed_in?%></h1> 
+<h1>My Blogs  <%= link_to "(+)", new_blog_path, {:style=> 'text-decoration: none;'} if current_user.is_admin?%></h1> 
 <h2><%= "#{blog_type}" %></h2>
     <ol>
     <% blogs.each do |blog| %>

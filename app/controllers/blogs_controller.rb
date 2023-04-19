@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  
+  before_action :check_admin, except: [:index, :show]
   before_action :authenticate_user!
   before_action :set_blog, except: [:index, :new, :create, :scheduled, :draft, :archived]
   def index    
@@ -78,6 +78,11 @@ class BlogsController < ApplicationController
   end
 
   private 
+  def check_admin
+    if user_signed_in? && current_user && current_user.is_admin==false
+      redirect_to root_path
+    end
+  end
 
   def set_blog
     @blog = user_signed_in? ? Blog.find(params[:id]) : Blog.published.find(params[:id])
