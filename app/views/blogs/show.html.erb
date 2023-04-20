@@ -1,5 +1,5 @@
   <div>
-  <h1> <%=@blog.title%></h2>
+  <h2> <%=@blog.title%></h2>
   <p><%=@blog.content%></p>
   </div>
    <% if current_user.is_admin?%>
@@ -9,3 +9,14 @@
     <%= button_to "#{ @blog.archived ? "Unarchive" : "Archive"}", archive_blog_path(@blog), method: :patch%>
     </div>
   <%end%>
+  <div>
+    <hr>
+    <%= render partial: "comments/form"%>
+  </div>
+  <div>
+    <%if true%>
+    <h4>Comments: <small><%=@blog.comments.where(is_archived: false).count%><small></h4>
+    <hr>
+    <%= render @blog.comments.order(created_at: :desc) %>
+    <%end%>
+  </div>

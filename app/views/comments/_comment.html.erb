@@ -1,0 +1,9 @@
+<% if !comment.is_archived || current_user.is_admin %>
+<article>
+  <small>@<%= comment.user.username %></small>
+  <p><%= comment.content %></p>
+  
+</article>
+ <%=button_to  comment.is_archived ? "Unhide Comment":"Hide Comment" , [comment.blog,comment], method: :patch if current_user.is_admin %>
+<hr>
+<% end %>

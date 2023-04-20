@@ -1,5 +1,6 @@
 class Blog < ApplicationRecord
   has_rich_text :content
+  has_many :comments
 
   validates :title, presence: true, length: {maximum: 120}
   validates :content, presence: true

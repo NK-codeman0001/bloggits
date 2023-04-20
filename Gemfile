@@ -77,3 +77,5 @@ gem "pagy", "~> 6.0"
 
 gem "unicorn"
 gem "nginx"
+
+gem "mail", "~> 2.8"

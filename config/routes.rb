@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   get "/blogs/draft", to: "blogs#draft", as: :draft
   get "/blogs/archived", to: "blogs#archived", as: :archived
   patch "/blogs/:id/archive", to: "blogs#archive", as: :archive_blog
-  resources :blogs
+  resources :blogs do
+    resources :comments, only: [:create, :update]
+  end
   root "blogs#index"
 
   

@@ -1,0 +1,16 @@
+<%= form_with model: [@blog, @blog.comments.build] do |form|%>
+  <div style="color: red;" >
+    <%# if !form.object.nil? && form.object.errors.any? %>
+    <ul>
+      <%# form.object.errors.each do |err| %>
+        <li><%#= err.full_message%><br>
+      <%# end %>
+    </ul>
+    <%#end%>
+  </div>
+  <div>
+  <%= form.label "Add Comment:"%><br>
+  <%= form.text_area :content%>
+  </div>
+<%= form.submit%>
+<%end%>
