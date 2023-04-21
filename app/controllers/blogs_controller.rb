@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_action :check_admin, except: [:index, :show]
+  before_action :check_admin, except: [:index, :show, :share_blog]
   before_action :authenticate_user!
   before_action :set_blog, except: [:index, :new, :create, :scheduled, :draft, :archived]
   def index    
@@ -65,6 +65,11 @@ class BlogsController < ApplicationController
     else
       render :show, status: :unprocessable_entity
     end
+  end
+
+  def share_blog
+    BlogMailer.share_blog(@blog, current_user).deliver_now
+    redirect_to blog_path(@blog)
   end
 
   def archive    

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   # delete "/blogs/:id", to: "blogs#destroy"
   # get "/blogs/:id/edit", to: "blogs#edit", as: :blog
   # patch "/blogs/:id/edit", to: "blogs#update"
+  get "/blogs/:id/shared", to: "blogs#share_blog", as: :share
   get "/blogs/scheduled", to: "blogs#scheduled", as: :scheduled
   get "/blogs/draft", to: "blogs#draft", as: :draft
   get "/blogs/archived", to: "blogs#archived", as: :archived

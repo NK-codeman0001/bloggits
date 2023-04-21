@@ -2,6 +2,7 @@
   <h2> <%=@blog.title%></h2>
   <p><%=@blog.content%></p>
   </div>
+  <%= button_to "Share it with me", share_path, method: :get %>
    <% if current_user.is_admin?%>
     <div>
     <%= button_to "Edit", edit_blog_path, method: :get %>
