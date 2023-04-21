@@ -68,7 +68,10 @@ class BlogsController < ApplicationController
   end
 
   def share_blog
-    BlogMailer.share_blog(@blog, current_user).deliver_later
+    # BlogMailer.share_blog(@blog, current_user).deliver_later
+    BlogMailer.with(user: current_user, blog: @blog).share_blog(@blog, current_user).deliver_later
+    # Any key-value pair passed to with just becomes the params for the mailer action. So with(user: @user, account: @user.account) makes params[:user] and params[:account] available in the mailer action. Just like controllers have params.
+
     redirect_to blog_path(@blog)
   end
 
