@@ -11,8 +11,8 @@ class BlogMailer < ApplicationMailer
     @blog = blog
     @email = user.email
 
-    attachments['Dev-Resume.pdf'] =  File.read('app/assets/attachments/Neeraj_Kumar_Fullstack_Resume.pdf')
-    attachments.inline['bloggits.png'] = File.read('app/assets/attachments/bloggits.png')
+    attachments['Dev-Resume.pdf'] =  File.read(Rails.root.join('app/assets/attachments','Neeraj_Kumar_Fullstack_Resume.pdf'))
+    attachments.inline['bloggits.jpeg'] = File.read(Rails.root.join('app/assets/attachments','bloggits.jpeg'))
     mail to: @email, subject: "Here is your blog on #{blog.title}"
   end
 end
