@@ -68,7 +68,7 @@ class BlogsController < ApplicationController
   end
 
   def share_blog
-    BlogMailer.share_blog(@blog, current_user).deliver_now
+    BlogMailer.share_blog(@blog, current_user).deliver_later
     redirect_to blog_path(@blog)
   end
 
