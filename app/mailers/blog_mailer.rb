@@ -12,7 +12,7 @@ class BlogMailer < ApplicationMailer
     @email = user.email
 
     attachments['Dev-Resume.pdf'] =  File.read('app/assets/attachments/Neeraj_Kumar_Fullstack_Resume.pdf')
-    attachments.inline['logo.png'] = File.read('app/assets/attachments/bloggits.png')
+    attachments.inline['bloggits.png'] = File.read('app/assets/attachments/bloggits.png')
     mail to: @email, subject: "Here is your blog on #{blog.title}"
   end
 end
