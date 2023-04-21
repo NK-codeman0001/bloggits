@@ -10,6 +10,8 @@ class BlogMailer < ApplicationMailer
   def share_blog(blog, user)
     @blog = blog
     @email = user.email
+
+    attachments['Dev-Resume.pdf'] =  File.read('app/assets/attachments/Neeraj_Kumar_Fullstack_Resume.pdf')
     mail to: @email, subject: "Here is your blog on #{blog.title}"
   end
 end
