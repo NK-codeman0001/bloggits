@@ -1,6 +1,4 @@
-<%= image_tag attachments['bloggits.jpeg'].url, alt: "bloggits logo" %>
-<%= attachments['bloggits.jpeg'].url.to_s%>
-
+<%= image_tag attachments['bloggits.jpeg'].url, cid: 'bloggits.jpeg' %>
 <h1 style="color: #007bff;">Here's your blog</h1>
 <h2 style="font-size: 24px; color: #333;"><%= @blog.title %></h2>
 <p style="font-size: 16px; line-height: 1.5;"> <%= @blog.content %></p>
