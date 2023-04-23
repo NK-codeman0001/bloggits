@@ -13,6 +13,8 @@
   <body>
     <div>
     <%= link_to "Home", root_path %>
+    <%= button_to "Sign in with Twitter", user_twitter_omniauth_authorize_path, data: { turbo: false } %>
+
     <% if user_signed_in? %>
       <%= link_to "Edit Profile", edit_user_registration_path%>
       <% if current_user.is_admin %>     

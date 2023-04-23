@@ -79,3 +79,9 @@ gem "unicorn"
 gem "nginx"
 
 gem "mail", "~> 2.8"
+
+gem "omniauth", "~> 2.1"
+
+gem "omniauth-twitter", "~> 1.4"
+
+gem "omniauth-rails_csrf_protection", "~> 1.0"

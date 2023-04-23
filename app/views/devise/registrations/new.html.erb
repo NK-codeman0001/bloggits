@@ -13,6 +13,7 @@
     <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
   </div>
 
+<% if f.object.password_required? %>
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
@@ -25,7 +26,7 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
-
+<% end %>
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
