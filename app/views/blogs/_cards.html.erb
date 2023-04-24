@@ -1,14 +1,14 @@
 <h1>My Blogs  <%= link_to "(+)", new_blog_path, {:style=> 'text-decoration: none;'} if current_user.is_admin?%></h1> 
 <h2><%= "#{blog_type}" %></h2>
-    <ol>
+    <ul>
     <% blogs.each do |blog| %>
     <% if blog.archived == blog_hide%>
       <div>
         <h3><li> <%=link_to blog.title, blog_path(blog) %></h3>
-        <p><%=blog.content%></p>
+        <p><%#=blog.content%></p>
       </div>
     <%end%>
     <%end%>
-    </ol>
+    </ul>
     <hr>
     <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
