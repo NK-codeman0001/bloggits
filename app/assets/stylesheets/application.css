@@ -13,3 +13,5 @@
  *= require_tree .
  *= require_self
  */
+ ul.admin{list-style-type:none;
+}
