@@ -1,1 +1,7 @@
-$("#blogs").html("<%= j render partial: 'cards', locals: {blog_type: '', blogs: @posts, blog_hide: false} %>");
+if ("<%=escape_javascript(@post_count) %>" > 0){
+  $("#blogs").html("<%= j render partial: 'cards', locals: {blog_type: '', blogs: @posts, blog_hide: false} %>");
+  }
+else{
+   $("#blogs").html("<h2>No Result Found</h2>");
+}
+//"<%=escape_javascript("<h2>No Result Found</h2>")%>"

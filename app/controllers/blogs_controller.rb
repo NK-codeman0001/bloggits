@@ -104,6 +104,7 @@ class BlogsController < ApplicationController
     respond_to do |format|
       # @posts = Blog.where("LOWER(title) LIKE ?", "%#{params[:search].downcase}%")
       @posts = Blog.all.published.where(archived: false).order(published_at: :desc).where("LOWER(title) LIKE ?", "%#{params[:search].downcase}%")
+      @post_count = @posts.count
       @pagy, @posts = pagy(@posts)
     # rescue Pagy::OverflowError
     #   redirect_to root_path(page: 1)
