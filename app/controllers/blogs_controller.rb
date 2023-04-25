@@ -3,14 +3,23 @@ class BlogsController < ApplicationController
 
   before_action :check_admin, except: [:index, :show, :share_blog]
   before_action :authenticate_user!
-  before_action :set_blog, except: [:index, :new, :create, :scheduled, :draft, :archived, :bulk_archive_blogs]
+  before_action :set_blog, except: [:index, :new, :create, :scheduled, :draft, :archived, :bulk_archive_blogs, :search]
   def index    
-    @blogs = Blog.all.published.where(archived: false).order(published_at: :desc)
+    @blogs = Blog.all.published.where(archived: false).search(params[:search]).order(published_at: :desc)
     # @pagy, @records = pagy(Product.all)
     @pagy, @blogs = pagy(@blogs)
     rescue Pagy::OverflowError
       redirect_to root_path(page: 1)
 
+  end
+
+  def search
+    # Debugger
+    @posts = Blog.where("LOWER(title) LIKE ?", "%#{params[:search].downcase}%")
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def scheduled

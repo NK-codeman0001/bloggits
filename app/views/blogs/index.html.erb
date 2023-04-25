@@ -1,1 +1,13 @@
-<%= render partial: "cards", locals: {blog_type: "", blogs: @blogs, blog_hide: false} %>
+<%= form_tag blogs_path, :method => 'get', :id => "blogs_search" do %>
+  <p>
+    <%= text_field_tag :search, params[:search], :id => "search_field"%>
+    <%#= submit_tag "Search", :name => nil %>
+  </p>
+  
+  <div id="blogs">
+  <%= render partial: "cards", locals: {blog_type: "", blogs: @blogs, blog_hide: false} %>
+  </div>
+
+<% end %>
+
+<%#= render partial: "cards", locals: {blog_type: "", blogs: @blogs, blog_hide: false} %>

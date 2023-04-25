@@ -35,4 +35,27 @@ $(document).ready(function(){
       data: {blog_ids: blogIds}
     });
   });
+
+  $("#search_field").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#blogs li").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+  // $("#search_field" ).on( "keyup", function(e) {
+  //   // alert($("#search_field").text);
+  //   var searchKey = $("#search_field").val();
+    
+
+  //   // $.ajax({
+  //   //   url: 'blogs/search',
+  //   //   type: 'GET',
+  //   //   data: {search: searchKey}
+  //   // });
+  // });
+
+
+
+
+
 });

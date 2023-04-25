@@ -18,9 +18,14 @@ Rails.application.routes.draw do
   get "/blogs/draft", to: "blogs#draft", as: :draft
   get "/blogs/archived", to: "blogs#archived", as: :archived
   patch "/blogs/:id/archive", to: "blogs#archive", as: :archive_blog
+  # get "/blogs/search", to: "blogs#search", as: :search
+  
+
   resources :blogs do
     collection do
+      get :search
       patch :bulk_archive_blogs 
+      
     end
     resources :comments, only: [:create, :update]
     
