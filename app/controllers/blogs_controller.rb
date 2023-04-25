@@ -5,7 +5,7 @@ class BlogsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_blog, except: [:index, :new, :create, :scheduled, :draft, :archived, :bulk_archive_blogs]
   def index    
-    @blogs = Blog.all.published.order(published_at: :desc)
+    @blogs = Blog.all.published.where(archived: false).order(published_at: :desc)
     # @pagy, @records = pagy(Product.all)
     @pagy, @blogs = pagy(@blogs)
     rescue Pagy::OverflowError
