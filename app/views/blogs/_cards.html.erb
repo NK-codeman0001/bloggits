@@ -1,22 +1,37 @@
 <h1>My Blogs  <%= link_to "(+)", new_blog_path, {:style=> 'text-decoration: none;'} if current_user.is_admin?%></h1> 
-<h2><%= "#{blog_type}" %></h2>
-    <% if current_user.is_admin?%> 
-      <ul class='admin'> 
-    <%else %>
-      <ul>
-      <%end%>
+
+<%if current_user.is_admin? %>
+<button type="button", id="archive-blogs" style="display: none;" >Archive Blogs</button>
+
+  <h2><%= "#{blog_type}" %></h2>
+    <ul class='admin'> 
     <% blogs.each do |blog| %>
     <% if blog.archived == blog_hide%>
       <div>
         <h3><li>
-        <% if current_user.is_admin?%>
-          <input type="checkbox" id="blog_<%= blog.id%>" data-blog-id= <%= blog.id%>>
-        <%end%>
+        <input type="checkbox" class="book-select-check" id="blog_<%= blog.id%>" data-blog-id= <%= blog.id%>>
+        
+        <%=link_to blog.title, blog_path(blog) %></h3>
+        <p><%#=blog.content%></p>
+      
+      </div>
+    <%end%>
+    <%end%>
+    </ul>
+<%else%>
+<h2><%= "#{blog_type}" %></h2>
+    <ul>
+    <% blogs.each do |blog| %>
+    <% if blog.archived == blog_hide%>
+      <div>
+        <h3><li>
         <%=link_to blog.title, blog_path(blog) %></h3>
         <p><%#=blog.content%></p>
       </div>
     <%end%>
     <%end%>
     </ul>
-    <hr>
-    <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+<%end%>
+
+<hr>
+<%== pagy_nav(@pagy) if @pagy.pages > 1 %>
