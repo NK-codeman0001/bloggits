@@ -1,1 +1,1 @@
-$("#blogs").html("<%= escape_javascript(render partial: 'cards', locals: {blog_type: '', blogs: @posts, blog_hide: false}) %>");
+$("#blogs").html("<%= j render partial: 'cards', locals: {blog_type: '', blogs: @posts, blog_hide: false} %>");

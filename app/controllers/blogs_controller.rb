@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
-  before_action :check_admin, except: [:index, :show, :share_blog]
+  before_action :check_admin, except: [:index, :show, :share_blog, :search]
   before_action :authenticate_user!
   before_action :set_blog, except: [:index, :new, :create, :scheduled, :draft, :archived, :bulk_archive_blogs, :search]
   def index    
@@ -13,15 +13,7 @@ class BlogsController < ApplicationController
 
   end
 
-  def search
-    # Debugger
-    @posts = Blog.where("LOWER(title) LIKE ?", "%#{params[:search].downcase}%")
-
-    respond_to do |format|
-      format.js
-    end
-  end
-
+ 
   def scheduled
     @blogs = Blog.all.scheduled.order(published_at: :desc)
     @pagy, @blogs = pagy(@blogs)
@@ -103,6 +95,22 @@ class BlogsController < ApplicationController
 
       format.js
     end
+  end
+
+  def search
+    # Debugger
+    # @posts = Blog.where("LOWER(title) LIKE ?", "%#{params[:search].downcase}%")
+
+    respond_to do |format|
+      # @posts = Blog.where("LOWER(title) LIKE ?", "%#{params[:search].downcase}%")
+      @posts = Blog.all.published.where(archived: false).order(published_at: :desc).where("LOWER(title) LIKE ?", "%#{params[:search].downcase}%")
+      @pagy, @posts = pagy(@posts)
+    # rescue Pagy::OverflowError
+    #   redirect_to root_path(page: 1)
+      format.js
+    end
+    rescue Pagy::OverflowError
+      redirect_to root_path(page: 1)
   end
 
   private 
