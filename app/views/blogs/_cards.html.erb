@@ -9,7 +9,7 @@
     <% if blog.archived == blog_hide%>
       <div>
         <h3><li>
-        <input type="checkbox" class="book-select-check" id="blog_<%= blog.id%>" data-blog-id= <%= blog.id%>>
+        <input type="checkbox" class="blog-select-check" id="blog_<%= blog.id%>" data-blog-id= <%= blog.id%>>
         
         <%=link_to blog.title, blog_path(blog) %></h3>
         <p><%#=blog.content%></p>

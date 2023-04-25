@@ -6,7 +6,7 @@ import "@rails/actiontext"
 
 $(document).ready(function(){
   var counter = 0;
-  $('.book-select-check').on('click',function(){
+  $('.blog-select-check').on('click',function(){
     if($(this).prop('checked')){
       counter +=1;
       //$('#archive-blogs').css('display','block');
@@ -19,5 +19,20 @@ $(document).ready(function(){
       $('#archive-blogs').hide();
       }
     }
+  });
+
+  $('#archive-blogs').on('click', function(){
+    var blogIds = [];
+    $('.blog-select-check').each(function(){
+      if($(this).prop('checked')){
+        blogIds.push($(this).data('blog-id'))
+      }
+    });
+
+    $.ajax({
+      url: 'blogs/bulk_archive_blogs',
+      type: 'PATCH',
+      data: {blog_ids: blogIds}
+    });
   });
 });

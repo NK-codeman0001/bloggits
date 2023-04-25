@@ -1,7 +1,9 @@
 class BlogsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   before_action :check_admin, except: [:index, :show, :share_blog]
   before_action :authenticate_user!
-  before_action :set_blog, except: [:index, :new, :create, :scheduled, :draft, :archived]
+  before_action :set_blog, except: [:index, :new, :create, :scheduled, :draft, :archived, :bulk_archive_blogs]
   def index    
     @blogs = Blog.all.published.order(published_at: :desc)
     # @pagy, @records = pagy(Product.all)
@@ -83,6 +85,15 @@ class BlogsController < ApplicationController
       render :show, status: :unprocessable_entity
     end
 
+  end
+
+  def bulk_archive_blogs
+    respond_to do |format|
+      @blogs = Blog.where(id: params[:blog_ids])
+      @blogs.update_all(archived: true)
+
+      format.js
+    end
   end
 
   private 

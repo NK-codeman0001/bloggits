@@ -19,7 +19,11 @@ Rails.application.routes.draw do
   get "/blogs/archived", to: "blogs#archived", as: :archived
   patch "/blogs/:id/archive", to: "blogs#archive", as: :archive_blog
   resources :blogs do
+    collection do
+      patch :bulk_archive_blogs 
+    end
     resources :comments, only: [:create, :update]
+    
   end
   root "blogs#index"
 
