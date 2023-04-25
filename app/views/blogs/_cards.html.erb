@@ -7,7 +7,7 @@
     <ul class='admin'> 
     <% blogs.each do |blog| %>
     <% if blog.archived == blog_hide%>
-      <div>
+      <div id="blog_div_<%= blog.id%>">
         <h3><li>
         <input type="checkbox" class="blog-select-check" id="blog_<%= blog.id%>" data-blog-id= <%= blog.id%>>
         
