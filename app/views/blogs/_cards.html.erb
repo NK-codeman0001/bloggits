@@ -1,6 +1,6 @@
 <h1>My Blogs  <%= link_to "(+)", new_blog_path, {:style=> 'text-decoration: none;'} if current_user.is_admin?%></h1> 
 
-<%if current_user.is_admin? %>
+<%if current_user.is_admin? && controller_name == 'blogs' && action_name == 'index' %>
 <button type="button", id="archive-blogs" style="display: none;" >Archive Blogs</button>
 
   <h2><%= "#{blog_type}" %></h2>
