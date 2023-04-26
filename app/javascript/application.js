@@ -21,7 +21,7 @@ import "@rails/actiontext"
         }
       });
     
-      $('#select-all-blog').on('click', function(){
+      $('#select-all-blogs').on('click', function(){
         $('.blog-select-check').prop('checked', $(this). prop('checked'));
       });
     
@@ -58,7 +58,7 @@ import "@rails/actiontext"
     };
 
   $(document).ready(ready);
-  $(document).on('turbolinks:load', ready);    
+  $(document).on('turbo:load', ready);    
 
 // // $(document).ready(function(){
 // $(document).on('turbolinks:load', function() {
