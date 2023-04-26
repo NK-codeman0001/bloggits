@@ -3,60 +3,109 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "trix"
 import "@rails/actiontext"
+//= require jquery
+//= require jquery.turbolinks
+//= require_tree .
 
-$(document).ready(function(){
-  var counter = 0;
-  $('.blog-select-check').on('click',function(){
-    if($(this).prop('checked')){
-      counter +=1;
-      //$('#archive-blogs').css('display','block');
-      $('#archive-blogs').show();
-    }
-    else {
-      counter -=1;
-      if(counter <=0){
-    //$('#archive-blogs').css('display','none');
-      $('#archive-blogs').hide();
+
+
+ var ready;
+ ready = function() {
+      var counter = 0;
+      $('.blog-select-check').on('click',function(){
+        if($(this).prop('checked')){
+          counter +=1;
+        }
+        else {
+          counter -=1;
+        }
+      });
+    
+      $('#select-all-blog').on('click', function(){
+        $('.blog-select-check').prop('checked', $(this). prop('checked'));
+      });
+    
+      $('#archive-blogs').on('click', function(){
+        if(counter <=0){
+            alert("Please select atleast one blog");
+            }
+            else {
+        var blogIds = [];
+        $('.blog-select-check').each(function(){
+          if($(this).prop('checked')){
+            blogIds.push($(this).data('blog-id'))
+          }
+        
+        });
+    
+        $.ajax({
+          url: 'blogs/bulk_archive_blogs',
+          type: 'PATCH',
+          data: {blog_ids: blogIds}
+        });
       }
-    }
-  });
+      });
+      $("#search_field" ).on( "keyup", function() {
+        var searchKey = $("#search_field").val();
+        
+    
+        $.ajax({
+          url: 'blogs/search',
+          type: 'GET',
+          data: {search: searchKey}
+        });
+      });
+    };
 
-  $('#archive-blogs').on('click', function(){
-    var blogIds = [];
-    $('.blog-select-check').each(function(){
-      if($(this).prop('checked')){
-        blogIds.push($(this).data('blog-id'))
-      }
-    });
+  $(document).ready(ready);
+  $(document).on('turbolinks:load', ready);    
 
-    $.ajax({
-      url: 'blogs/bulk_archive_blogs',
-      type: 'PATCH',
-      data: {blog_ids: blogIds}
-    });
-  });
+// // $(document).ready(function(){
+// $(document).on('turbolinks:load', function() {
+// // document.addEventListener("turbolinks:load", function() {
 
-  // $("#search_field").on("keyup", function() {
-  //   var value = $(this).val().toLowerCase();
-  //   $("#blogs li").filter(function() {
-  //     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-  //   });
-  // });
+//   var counter = 0;
+//   $('.blog-select-check').on('click',function(){
+//     if($(this).prop('checked')){
+//       counter +=1;
+//     }
+//     else {
+//       counter -=1;
+//     }
+//   });
 
-  $("#search_field" ).on( "keyup", function() {
-    // alert($("#search_field").text);
-    var searchKey = $("#search_field").val();
+//   $('#select-all-blog').on('click', function(){
+//     $('.blog-select-check').prop('checked', $(this). prop('checked'));
+//   });
+
+//   $('#archive-blogs').on('click', function(){
+//     if(counter <=0){
+//         alert("Please select atleast one blog");
+//         }
+//         else {
+//     var blogIds = [];
+//     $('.blog-select-check').each(function(){
+//       if($(this).prop('checked')){
+//         blogIds.push($(this).data('blog-id'))
+//       }
+    
+//     });
+
+//     $.ajax({
+//       url: 'blogs/bulk_archive_blogs',
+//       type: 'PATCH',
+//       data: {blog_ids: blogIds}
+//     });
+//   }
+//   });
+//   $("#search_field" ).on( "keyup", function() {
+//     var searchKey = $("#search_field").val();
     
 
-    $.ajax({
-      url: 'blogs/search',
-      type: 'GET',
-      data: {search: searchKey}
-    });
-  });
-
-
-
-
-
-});
+//     $.ajax({
+//       url: 'blogs/search',
+//       type: 'GET',
+//       data: {search: searchKey}
+//     });
+//   });
+// });
