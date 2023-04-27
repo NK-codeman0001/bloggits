@@ -1,6 +1,6 @@
 <h1>My Blogs  <%= link_to "(+)", new_blog_path, {:style=> 'text-decoration: none;'} if current_user.is_admin?%></h1> 
 
-<%if current_user.is_admin? && controller_name == 'blogs' && action_name == 'index' %>
+<%if current_user.is_admin? && controller_name == 'blogs' && action_name == 'index' || action_name == 'search' %>
  <input type="checkbox" id="select-all-blogs">
  <label>Select All</label>
 <br>
