@@ -18,11 +18,25 @@ import "@rails/actiontext"
         }
         else {
           counter -=1;
+          $('#select-all-blogs').prop('checked', false);
         }
       });
     
       $('#select-all-blogs').on('click', function(){
-        $('.blog-select-check').prop('checked', $(this). prop('checked'));
+        if($(this).prop('checked')){
+        $('.blog-select-check').each(function() {
+          $(this).prop('checked', true);
+          counter +=1;
+        });
+        }
+        else{
+          $('.blog-select-check').each(function() {
+            $(this).prop('checked', false);
+            counter -=1;  
+          });
+
+        }
+
       });
     
       $('#archive-blogs').on('click', function(){
@@ -57,7 +71,7 @@ import "@rails/actiontext"
       });
     };
 
-  $(document).ready(ready);
+  // $(document).ready(ready);
   $(document).on('turbo:load', ready);    
 
 // // $(document).ready(function(){
