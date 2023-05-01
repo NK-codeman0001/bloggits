@@ -1,40 +1,64 @@
-<h1>My Blogs  <%= link_to "(+)", new_blog_path, {:style=> 'text-decoration: none;'} if current_user.is_admin?%></h1> 
-
+<div class="w-full flex flex-col items-center text-center text-gray-900">
 <%if current_user.is_admin? && controller_name == 'blogs' && action_name == 'index' || action_name == 'search' %>
- <input type="checkbox" id="select-all-blogs">
- <label>Select All</label>
-<br>
-<button type="button", id="archive-blogs">Archive Blogs</button>
+      <h1 class="text-4xl font-extrabold mb-4"><%= "#{blog_type}" %></h1>
 
-  <h2><%= "#{blog_type}" %></h2>
-    <ul class='admin'> 
-    <% blogs.each do |blog| %>
-    <% if blog.archived == blog_hide%>
-      <div id="blog_div_<%= blog.id%>">
-        <h3><li>
-        <input type="checkbox" class="blog-select-check" id="blog_<%= blog.id%>" data-blog-id= <%= blog.id%>>
-        
-        <%=link_to blog.title, blog_path(blog) %></h3>
-        <p><%#=blog.content%></p>
+
+    <div class="admin-buttons my-2 flex items-center p-2">
       
+      <div class="select-all-button">
+        <input type="checkbox" id="select-all-blogs">
+        <label>Select All</label>
       </div>
+      
+      <span class="mx-2 text-1xl ">|</span>
+      <br />
+      <button class="text-white  rounded-lg border-2 border-black bg-blue-800 px-2 py-0.5 hover:bg-violet-600 focus focus:ring focus:ring-violet-300 active:bg-violet-700" type="button" , id="archive-blogs">Archive Blogs</button>
+    </div>
+        
+    <div class="blog-list w-4/5 text-start border-2 border-gray-900 py-4 px-4">
+    <ul class="admin list-none space-y-4 ">
+    <% blogs.each do |blog| %>
+    <% if blog.archived == blog_hide%> 
+     
+        <div class="w-full content hover:border-2 p-4 border-gray-900 bg-white hover:bg-gray-200 active:bg-gray-400 my-2 cursor-pointer" id="blog_div_<%= blog.id%>">
+          <h2 class="text-lg"><li><input type="checkbox" class="blog-select-check mr-2" id="blog_<%= blog.id%>" data-blog-id= <%= blog.id%> />
+      <%= link_to blog_path(blog), class: "card hover:bg-gray-200 active:bg-gray-400" do %>
+          <%=blog.title%></li></h2>
+        <p><%#=blog.content%></p>
+        </div>
+
+      <%end%>
     <%end%>
-    <%end%>
+    <%end%>      
     </ul>
+    </div>
+
 <%else%>
-<h2><%= "#{blog_type}" %></h2>
-    <ul>
+  <div class="w-full flex flex-col items-center text-center">
+  <h1 class="text-4xl font-extrabold mb-4"><%= "#{blog_type}" %></h1>
+
+    <div class="blog-list w-4/5 text-start border-2 border-gray-900 py-4 px-4">
+    <ul class="admin list-none space-y-4 ">
     <% blogs.each do |blog| %>
     <% if blog.archived == blog_hide%>
-      <div>
-        <h3><li>
-        <%=link_to blog.title, blog_path(blog) %></h3>
+      
+        <div class="w-full content hover:border-2 p-4 border-gray-900 bg-white hover:bg-gray-200 active:bg-gray-400 my-2 cursor-pointer" id="blog_div_<%= blog.id%>">
+          <h2 class="text-lg"><li>
+      <%= link_to blog_path(blog), class: "card hover:bg-gray-200 active:bg-gray-400" do %>
+          <%=blog.title%></li></h2>
         <p><%#=blog.content%></p>
-      </div>
+        </div>
+
+      <%end%>
     <%end%>
-    <%end%>
+    <%end%>      
     </ul>
+    </div>
+
 <%end%>
 
-<hr>
-<%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+  <div class="pagination bottom m-4 p-4">
+    <hr>
+   <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+  </div>
+</div>
