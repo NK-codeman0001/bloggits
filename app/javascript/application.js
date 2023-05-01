@@ -66,26 +66,26 @@ ready = function () {
       }
     });
   });
-    // toggle navigation on small screens
-    $("#menu-button").on("click", function () {
-      $("nav ul").toggleClass("hidden");
-    });
+    // // toggle navigation on small screens
+    // $("#menu-button").on("click", function () {
+    //   $("nav ul").toggleClass("hidden");
+    // });
   
-    // hide navigation when clicking outside of it
-    $(document).on("click", function (event) {
-      if (!$(event.target).closest("nav").length) {
-        $("nav ul").addClass("hidden");
-      }
-    });
+    // // hide navigation when clicking outside of it
+    // $(document).on("click", function (event) {
+    //   if (!$(event.target).closest("nav").length) {
+    //     $("nav ul").addClass("hidden");
+    //   }
+    // });
   
-    // hide navigation on resize if it's visible on small screens
-    $(window).on("resize", function () {
-      if ($(window).width() > 768) {
-        $("nav ul").removeClass("hidden");
-      } else {
-        $("nav ul").addClass("hidden");
-      }
-    });
+    // // hide navigation on resize if it's visible on small screens
+    // $(window).on("resize", function () {
+    //   if ($(window).width() > 768) {
+    //     $("nav ul").removeClass("hidden");
+    //   } else {
+    //     $("nav ul").addClass("hidden");
+    //   }
+    // });
   
 };
 
