@@ -20,7 +20,7 @@
     <% blogs.each do |blog| %>
     <% if blog.archived == blog_hide%> 
      
-        <div class="w-full content hover:border-2 p-4 border-gray-900 bg-white hover:bg-gray-200 active:bg-gray-400 my-2 cursor-pointer" id="blog_div_<%= blog.id%>">
+        <div class="w-full content hover:border-2 p-4 border-gray-900 bg-white hover:bg-gray-200 active:bg-gray-400 my-2 " id="blog_div_<%= blog.id%>">
           <h2 class="text-lg"><li><input type="checkbox" class="blog-select-check mr-2" id="blog_<%= blog.id%>" data-blog-id= <%= blog.id%> />
       <%= link_to blog_path(blog), class: "card hover:bg-gray-200 active:bg-gray-400" do %>
           <%=blog.title%></li></h2>
@@ -42,7 +42,7 @@
     <% blogs.each do |blog| %>
     <% if blog.archived == blog_hide%>
       
-        <div class="w-full content hover:border-2 p-4 border-gray-900 bg-white hover:bg-gray-200 active:bg-gray-400 my-2 cursor-pointer" id="blog_div_<%= blog.id%>">
+        <div class="w-full content hover:border-2 p-4 border-gray-900 bg-white hover:bg-gray-200 active:bg-gray-400 my-2 " id="blog_div_<%= blog.id%>">
           <h2 class="text-lg"><li>
       <%= link_to blog_path(blog), class: "card hover:bg-gray-200 active:bg-gray-400" do %>
           <%=blog.title%></li></h2>
