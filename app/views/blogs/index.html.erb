@@ -1,8 +1,10 @@
 <%= form_tag blogs_path, :method => 'get', :id => "blogs_search" do %>
-  <p>
-    <%= text_field_tag :search, params[:search], :id => "search_field"%>
-    <%#= submit_tag "Search", :name => nil %>
-  </p>
+  <div class="w-3/5 mx-auto mt-3 relative">
+    <%= text_field_tag :search, params[:search], :id => "search_field", :class=> "bg-white rounded-full py-2 px-4 pl-12 w-full focus:border-2 focus:border-gray-900", :placeholder=>"Search" %>
+      <div class="absolute top-0 left-0 mt-2 ml-2">
+        <span class="inline-block h-6 w-6 rounded-full bg-gray-300"></span> 
+      </div>
+  </div>
   
   <div id="blogs">
   <%= render partial: "cards", locals: {blog_type: "", blogs: @blogs, blog_hide: false} %>
