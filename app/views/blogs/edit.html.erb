@@ -1,4 +1,17 @@
-<h1>Edit Blog</h1>
-<%= render partial: "form", locals: {model_name: @blog} %>
-<div>
- <%= button_to "Delete", blog_path, method: :delete, data: {turbo_confirm: "You want to delete Blog: #{@blog.title}"}%>
+<div class="main mx-auto flex flex-col items-center justify-center py-5">
+    <div class="head text-2xl font-extrabold">
+      <h1>Edit Blog</h1>
+    </div>
+
+  <%= render partial: "form", locals: {model_name: @blog} %>
+
+  <div class="text-blue-600 my-6 font-extrabold flex flex-row items-center">
+    <div>
+      <%= button_to "Delete", blog_path, method: :delete, data: {turbo_confirm: "You want to delete Blog: #{@blog.title}"}, class: " underline my-2 mx-5" %>
+    </div>
+    <div>
+      <%= link_to "Back", :back, class: "back-btn underline my-2 mx-5" %>
+    </div>
+  </div>
+
+</div>
