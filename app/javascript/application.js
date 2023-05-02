@@ -49,9 +49,16 @@ function setupCheckboxes() {
   });
 }
 
-
+function toggleMenu(){
+  const menuButton = document.getElementById('menu-button');
+  const navbar = document.getElementById('navbar-sticky');
+  menuButton.addEventListener('click', function() {
+  navbar.classList.toggle('hidden');
+  });
+}
 var ready;
 ready = function () {
+  toggleMenu();
   setupCheckboxes();
 
   $("#search_field").on("keyup", function () {
