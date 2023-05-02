@@ -56,8 +56,19 @@ function toggleMenu(){
   navbar.classList.toggle('hidden');
   });
 }
+
+function hideNotice(){
+  $('#notice').fadeOut(5000); // 5 seconds x 1000 milisec = 5000 milisec
+
+}
+
+function hideAlert(){
+  $('#alert').fadeOut(8000); // 5 seconds x 1000 milisec = 5000 milisec
+}
 var ready;
 ready = function () {
+  // hideAlert();
+  hideNotice();
   toggleMenu();
   setupCheckboxes();
 
