@@ -1,9 +1,16 @@
-<% if !comment.is_archived || current_user.is_admin %>
-<article>
-  <small>@<%= comment.user.username %></small>
-  <p><%= comment.content %></p>
-  
-</article>
- <%=button_to  comment.is_archived ? "Unhide Comment":"Hide Comment" , [comment.blog,comment], method: :patch if current_user.is_admin %>
-<hr>
-<% end %>
+<div class="comments-body space-y-1 md:w-1/2">
+     <div class="lists pt-2  p-2 ">                
+        <div class="comment border-2 my-1 bg-gray-300">
+
+          <% if !comment.is_archived || current_user.is_admin %>
+              <div class="body flex border-b-2">
+                <p class="px-2 pt-1 text-lg text-gray-600"><%= comment.content %></p>
+              </div>
+              <div class="head flex justify-between text-sm">
+                  <p class="m-1 text-gray-400">@<%= comment.user.username %></p>
+                  <%=button_to  comment.is_archived ? "Unhide Comment":"Hide Comment" , [comment.blog,comment], :class=>"border-2 px-2 py-1 rounded-md bg-slate-300 text-gray-800 border-gray-800 hover:bg-gray-100 scale-75", method: :patch if current_user.is_admin%>
+              </div>
+          <% end %>
+        </div>
+     </div>
+</div>

@@ -1,10 +1,10 @@
   <div class="form flex-col rounded-lg items-center border-2 border-gray-50 px-2 pb-2 bg-gray-300 w-full">
-<%= form_with model: [@blog, @blog.comments.build] do |form|%>
+    <%= form_with model: [@blog, @blog.comments.build] do |form|%>
     <%#= form.label "Add Comment:"%><br>
-    <%= form.text_area :content, class: "w-full px-2 py-1 text-xs rounded-md"%>
-      <div class="bg-gray-100 flex justify-between rounded-xl">
-        <p class="px-2 py-0.5 ">@<%= current_user.username%></p> 
-        <%= form.submit "Comment", class:" rounded-xl w-fit border-2 border-white bg-blue-600 px-2 text-white ring-blue-200 hover:ring-2" %>
-    </div>
-<%end%>
+        <%= form.text_area :content, class: "w-full px-2 py-1 text-xs rounded-md"%>
+          <div class="bg-gray-100 flex justify-between rounded-xl">
+              <p class="px-2 py-0.5 ">@<%= current_user.username%></p> 
+              <%= form.submit "Comment", class:" rounded-xl w-fit border-2 border-white bg-blue-600 px-2 text-white ring-blue-200 hover:ring-2" %>
+          </div>
+      <%end%>
   </div>
