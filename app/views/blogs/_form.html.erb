@@ -2,11 +2,11 @@
     <%= form_with model:model_name do |form|%>
       <div style="color: red;" >
         <% if form.object.errors.any? %>
-        <ul>
           <% form.object.errors.each do |err| %>
-            <li><%= err.full_message%><br>
+            <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4 my-1" role="alert" id="alert">
+              <p class="alert"><%= err.full_message%></p>   
+            </div>
           <% end %>
-        </ul>
         <%end%>
       </div>
 
