@@ -43,11 +43,10 @@ class BlogsController < ApplicationController
   end
 
   def create
-    @blog = Blog.new(blog_params)
-    if @blog.save
-      redirect_to blog_path(@blog)
-    else
-      render :new, status: :unprocessable_entity
+    if BlogCreateJob.perform_async(blog_params.as_json)
+      redirect_to root_path
+    # else
+    #   render :new, status: :unprocessable_entity
     end
   end
 
@@ -55,7 +54,7 @@ class BlogsController < ApplicationController
   end
 
   def update
-    if @blog.update(blog_params)
+    if !BlogUpdateJob.perform_async(params[:id], blog_params.as_json).nil?
       redirect_to blog_path(@blog)
     else
       render :edit, status: :unprocessable_entity
@@ -79,8 +78,7 @@ class BlogsController < ApplicationController
   end
 
   def archive    
-    @blog.toggle!(:archived)
-    if @blog.save
+    if !BlogArchiveJob.perform_async(params[:id]).nil?
       redirect_to blog_path(@blog)
     else
       render :show, status: :unprocessable_entity
