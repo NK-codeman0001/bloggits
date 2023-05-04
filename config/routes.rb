@@ -2,7 +2,10 @@ require 'sidekiq/web'
 
 
 Rails.application.routes.draw do
-  mount Sidekiq::Web => "/sidekiq" # mount Sidekiq::Web in your Rails app
+  authenticate :user, lambda { |u| u.is_admin? } do
+    mount Sidekiq::Web => "/sidekiq" # mount Sidekiq::Web in your Rails app
+  end
+
 
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
