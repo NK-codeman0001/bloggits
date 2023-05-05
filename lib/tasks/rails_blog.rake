@@ -14,7 +14,7 @@ task :fetch_rails_blogs => :environment do
     blog = Blog.where(title: title).first_or_initialize
     blog.update(
       content: content,
-      published_at: Time.current
+      published_at: published_at
     )
 
   end
