@@ -93,3 +93,5 @@ gem "tailwindcss-rails", "~> 2.0"
 gem "foreman", "~> 0.87.2"
 
 gem "sidekiq", "~> 7.1"
+
+gem "nokogiri", "~> 1.14"

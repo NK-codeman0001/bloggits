@@ -288,6 +288,7 @@ DEPENDENCIES
   jquery-rails (~> 4.5)
   mail (~> 2.8)
   nginx
+  nokogiri (~> 1.14)
   omniauth (~> 2.1)
   omniauth-rails_csrf_protection (~> 1.0)
   omniauth-twitter (~> 1.4)
