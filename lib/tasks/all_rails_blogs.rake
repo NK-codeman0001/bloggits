@@ -23,7 +23,6 @@ task :fetch_all_rails_blogs => :environment do
       title = blog_page.css('h2').text.strip
       content = blog_page.css('.common-content--post').text.strip
       date = Date.parse(blog_page.css('.common-headline h5').text.strip)
-      puts "#{title} done"
 
       blog = Blog.where(title: title).first_or_initialize
       blog.update(
