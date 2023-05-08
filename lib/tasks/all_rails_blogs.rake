@@ -21,7 +21,7 @@ task :fetch_all_rails_blogs => :environment do
       # use Nokogiri to scrape the blog title, author name, and publication date
       # author = blog_page.css('h6').text.strip
       title = blog_page.css('h2').text.strip
-      content = blog_page.css('.common-content--post').text.strip
+      content = blog_page.css('.common-content--post')
       date = Date.parse(blog_page.css('.common-headline h5').text.strip)
 
       blog = Blog.where(title: title).first_or_initialize
