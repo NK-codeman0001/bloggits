@@ -97,3 +97,5 @@ gem "sidekiq", "~> 7.1"
 gem "nokogiri", "~> 1.14"
 
 gem "mechanize", "~> 2.9"
+
+gem "active_model_serializers", "~> 0.10.13"

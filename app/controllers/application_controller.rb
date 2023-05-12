@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   include Pagy::Backend
+  serialization_scope :view_context
   before_action :configure_permitted_parameters, if: :devise_controller?
+
 
 protected
 def configure_permitted_parameters

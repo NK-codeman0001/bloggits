@@ -36,6 +36,10 @@ class BlogsController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.json { render json: @blog}
+    end
   end
 
   def new
