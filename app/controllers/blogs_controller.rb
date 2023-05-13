@@ -8,38 +8,68 @@ class BlogsController < ApplicationController
     @blogs = Blog.all.published.where(archived: false).search(params[:search]).order(published_at: :desc)
     # @pagy, @records = pagy(Product.all)
     @pagy, @blogs = pagy(@blogs)
-    rescue Pagy::OverflowError
-      redirect_to root_path(page: 1)
-
+    
+    respond_to do |format|
+      format.html
+      format.json { render json: @blogs}
+    end
+    
+  rescue Pagy::OverflowError
+    # render :json => { :error => "Page Over Flow"}, :status => 404
+    redirect_to root_path(page: 1), :status => 404
+    
   end
 
  
   def scheduled
     @blogs = Blog.all.scheduled.order(published_at: :desc)
     @pagy, @blogs = pagy(@blogs)
-    rescue Pagy::OverflowError
-      redirect_to root_path(page: 1)
+    
+    respond_to do |format|
+      format.html
+      format.json { render json: @blogs}
+    end
+    
+  rescue Pagy::OverflowError
+    # render :json => { :error => "Page Over Flow"}, :status => 404
+    redirect_to root_path(page: 1), :status => 404
+   
   end
 
   def draft
     @blogs = Blog.all.draft.order(created_at: :desc)
-    @pagy, @blogs = pagy(@blogs)
-    rescue Pagy::OverflowError
-      redirect_to root_path(page: 1)
+    @pagy, @blogs = pagy(@blogs) 
+   
+    respond_to do |format|
+      format.html
+      format.json { render json: @blogs}
+    end
+    
+  rescue Pagy::OverflowError
+    # render :json => { :error => "Page Over Flow"}, :status => 404
+    redirect_to root_path(page: 1), :status => 404
+   
   end
 
   def archived
     @blogs = Blog.all.archived.order(updated_at: :desc)
     @pagy, @blogs = pagy(@blogs)
-    rescue Pagy::OverflowError
-      redirect_to root_path(page: 1)
+ 
+    respond_to do |format|
+      format.html
+      format.json { render json: @blogs}
+    end
+    
+  rescue Pagy::OverflowError
+    # render :json => { :error => "Page Over Flow"}, :status => 404
+    redirect_to root_path(page: 1), :status => 404
   end
 
   def show
-    respond_to do |format|
-      format.html
-      format.json { render json: @blog}
-    end
+      respond_to do |format|
+        format.html
+        format.json { render json: @blog}
+      end
   end
 
   def new
@@ -48,7 +78,8 @@ class BlogsController < ApplicationController
 
   def create
     if BlogCreateJob.perform_async(blog_params.as_json)
-      redirect_to root_path
+      # render :json => {success: blog_params.as_json}, :status => 201
+      redirect_to root_path, :status => 201
     # else
     #   render :new, status: :unprocessable_entity
     end
@@ -59,7 +90,8 @@ class BlogsController < ApplicationController
 
   def update
     if !BlogUpdateJob.perform_async(params[:id], blog_params.as_json).nil?
-      redirect_to blog_path(@blog)
+      redirect_to blog_path(@blog), :status => 202
+
     else
       render :edit, status: :unprocessable_entity
     end
@@ -83,7 +115,7 @@ class BlogsController < ApplicationController
 
   def archive    
     if !BlogArchiveJob.perform_async(params[:id]).nil?
-      redirect_to blog_path(@blog)
+      redirect_to blog_path(@blog), :status => 202
     else
       render :show, status: :unprocessable_entity
     end
@@ -119,14 +151,16 @@ class BlogsController < ApplicationController
   private 
   def check_admin
     if user_signed_in? && current_user && current_user.is_admin==false
-      redirect_to root_path
+      redirect_to root_path, :status => 405
+      # render :json => { :error => "Method Not Allowed"}, :status => 405
     end
   end
 
   def set_blog
     @blog = user_signed_in? ? Blog.find(params[:id]) : Blog.published.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to root_path
+    # render :json => { :error => "Record Not Found"}, :status => 404
+    redirect_to root_path, :status => 404
   end
 
   def blog_params
