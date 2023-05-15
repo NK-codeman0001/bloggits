@@ -62,6 +62,8 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem 'rspec-rails', '~> 3.5'
+
 end
 
 group :test do
@@ -99,3 +101,5 @@ gem "nokogiri", "~> 1.14"
 gem "mechanize", "~> 2.9"
 
 gem "active_model_serializers", "~> 0.10.13"
+
+gem 'rswag'
