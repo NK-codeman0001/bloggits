@@ -1,0 +1,431 @@
+  <h4><a href='#blogs'>Blogs</a></h4>
+  <ul>
+      <li><a href='#blogs-index'>index</a></li>
+      <li><a href='#blogs-scheduled'>scheduled</a></li>
+      <li><a href='#blogs-draft'>draft</a></li>
+      <li><a href='#blogs-archived'>archived</a></li>
+      <li><a href='#blogs-show'>show</a></li>
+      <li><a href='#blogs-create'>create</a></li>
+      <li><a href='#blogs-update'>update</a></li>
+      <li><a href='#blogs-destroy'>destroy</a></li>
+      <li><a href='#blogs-share_blog'>share_blog</a></li>
+      <li><a href='#blogs-archive'>archive</a></li>
+      <li><a href='#blogs-bulk_archive_blogs'>bulk_archive_blogs</a></li>
+      <li><a href='#blogs-search'>search</a></li>
+  </ul>
+
+
+
+  <hr/>
+
+  <div>
+    <h2 id="blogs">
+      <a href='#blogs'>Blogs</a><br>
+      <small></small>
+    </h2>
+  </div>
+
+
+  <div>
+
+      <hr/>
+
+      <h3 id="blogs-index">
+      <a href='#blogs'>Blogs</a> / <a href='#blogs-index'>index</a>
+      </h3>
+
+      <div>
+          <h4>
+              GET /blogs
+            <br>
+            <small>List all blogs</small>
+          </h4>
+          <h4>
+              GET 
+            <br>
+            <small>List all blogs</small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+
+      </div>
+      <hr/>
+
+      <h3 id="blogs-scheduled">
+      <a href='#blogs'>Blogs</a> / <a href='#blogs-scheduled'>scheduled</a>
+      </h3>
+
+      <div>
+          <h4>
+              GET /blogs/scheduled
+            <br>
+            <small>List scheduled blogs</small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+
+      </div>
+      <hr/>
+
+      <h3 id="blogs-draft">
+      <a href='#blogs'>Blogs</a> / <a href='#blogs-draft'>draft</a>
+      </h3>
+
+      <div>
+          <h4>
+              GET /blogs/draft
+            <br>
+            <small>List draft blogs</small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+
+      </div>
+      <hr/>
+
+      <h3 id="blogs-archived">
+      <a href='#blogs'>Blogs</a> / <a href='#blogs-archived'>archived</a>
+      </h3>
+
+      <div>
+          <h4>
+              GET /blogs/archived
+            <br>
+            <small>List archived blogs</small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+
+      </div>
+      <hr/>
+
+      <h3 id="blogs-show">
+      <a href='#blogs'>Blogs</a> / <a href='#blogs-show'>show</a>
+      </h3>
+
+      <div>
+          <h4>
+              GET /blogs/:id
+            <br>
+            <small>Show a specific blog</small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+
+      </div>
+      <hr/>
+
+      <h3 id="blogs-create">
+      <a href='#blogs'>Blogs</a> / <a href='#blogs-create'>create</a>
+      </h3>
+
+      <div>
+          <h4>
+              POST /blogs
+            <br>
+            <small>Create a new blog</small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+
+          <h4>Params</h4>
+          <ul>
+    <li>
+      <strong>blog </strong>:
+      <small>
+        required
+        
+          [ 
+<p>Must be a Hash</p>
+ ]
+      </small>
+      
+    </li>
+    <ul>
+    <li>
+      <strong>title </strong>:
+      <small>
+        optional
+        
+          [ 
+<p>Must be a String</p>
+ ]
+      </small>
+      
+<p>Title of the blog</p>
+
+    </li>
+    
+    <li>
+      <strong>content </strong>:
+      <small>
+        optional
+        
+          [ 
+<p>Must be a String</p>
+ ]
+      </small>
+      
+<p>Content of the blog</p>
+
+    </li>
+    
+    <li>
+      <strong>archived </strong>:
+      <small>
+        optional
+        
+          [ 
+<p>Must be one of: <code>true</code>, <code>false</code>, <code>1</code>, <code>0</code>.</p>
+ ]
+      </small>
+      
+<p>Archived status of the blog</p>
+
+    </li>
+    
+    <li>
+      <strong>published_at </strong>:
+      <small>
+        optional
+        
+          [ 
+<p>Must be a Date</p>
+ ]
+      </small>
+      
+<p>Publication date of the blog</p>
+
+    </li>
+    
+</ul>
+
+</ul>
+
+      </div>
+      <hr/>
+
+      <h3 id="blogs-update">
+      <a href='#blogs'>Blogs</a> / <a href='#blogs-update'>update</a>
+      </h3>
+
+      <div>
+          <h4>
+              PATCH /blogs/:id
+            <br>
+            <small>Update a specific blog</small>
+          </h4>
+          <h4>
+              PUT /blogs/:id
+            <br>
+            <small>Update a specific blog</small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+
+          <h4>Params</h4>
+          <ul>
+    <li>
+      <strong>id </strong>:
+      <small>
+        required
+        
+          [ 
+<p>Must be a Integer</p>
+ ]
+      </small>
+      
+<p>ID of the blog</p>
+
+    </li>
+    
+    <li>
+      <strong>blog </strong>:
+      <small>
+        required
+        
+          [ 
+<p>Must be a Hash</p>
+ ]
+      </small>
+      
+    </li>
+    <ul>
+    <li>
+      <strong>title </strong>:
+      <small>
+        optional
+        
+          [ 
+<p>Must be a String</p>
+ ]
+      </small>
+      
+<p>Title of the blog</p>
+
+    </li>
+    
+    <li>
+      <strong>content </strong>:
+      <small>
+        optional
+        
+          [ 
+<p>Must be a String</p>
+ ]
+      </small>
+      
+<p>Content of the blog</p>
+
+    </li>
+    
+    <li>
+      <strong>archived </strong>:
+      <small>
+        optional
+        
+          [ 
+<p>Must be one of: <code>true</code>, <code>false</code>, <code>1</code>, <code>0</code>.</p>
+ ]
+      </small>
+      
+<p>Archived status of the blog</p>
+
+    </li>
+    
+    <li>
+      <strong>published_at </strong>:
+      <small>
+        optional
+        
+          [ 
+<p>Must be a Date</p>
+ ]
+      </small>
+      
+<p>Publication date of the blog</p>
+
+    </li>
+    
+</ul>
+
+</ul>
+
+      </div>
+      <hr/>
+
+      <h3 id="blogs-destroy">
+      <a href='#blogs'>Blogs</a> / <a href='#blogs-destroy'>destroy</a>
+      </h3>
+
+      <div>
+          <h4>
+              DELETE /blogs/:id
+            <br>
+            <small>Delete a specific blog</small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+
+      </div>
+      <hr/>
+
+      <h3 id="blogs-share_blog">
+      <a href='#blogs'>Blogs</a> / <a href='#blogs-share_blog'>share_blog</a>
+      </h3>
+
+      <div>
+          <h4>
+              GET /blogs/:id/shared
+            <br>
+            <small>Share a blog</small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+
+      </div>
+      <hr/>
+
+      <h3 id="blogs-archive">
+      <a href='#blogs'>Blogs</a> / <a href='#blogs-archive'>archive</a>
+      </h3>
+
+      <div>
+          <h4>
+              PATCH /blogs/:id/archive
+            <br>
+            <small>Archive a blog</small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+
+      </div>
+      <hr/>
+
+      <h3 id="blogs-bulk_archive_blogs">
+      <a href='#blogs'>Blogs</a> / <a href='#blogs-bulk_archive_blogs'>bulk_archive_blogs</a>
+      </h3>
+
+      <div>
+          <h4>
+              PATCH /blogs/bulk_archive_blogs
+            <br>
+            <small>Bulk archive blogs</small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+
+      </div>
+      <hr/>
+
+      <h3 id="blogs-search">
+      <a href='#blogs'>Blogs</a> / <a href='#blogs-search'>search</a>
+      </h3>
+
+      <div>
+          <h4>
+              GET /blogs/search
+            <br>
+            <small>Search blogs</small>
+          </h4>
+      </div>
+
+      <div>
+        
+
+
+      </div>
+  </div>

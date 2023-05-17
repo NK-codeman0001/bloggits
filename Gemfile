@@ -99,3 +99,5 @@ gem "nokogiri", "~> 1.14"
 gem "mechanize", "~> 2.9"
 
 gem "active_model_serializers", "~> 0.10.13"
+
+gem "apipie-rails", "~> 1.1"
