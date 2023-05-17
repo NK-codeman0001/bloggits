@@ -334,7 +334,7 @@ paths:
         '422':
           description: Blog archive failed
 servers:
-- url: http://localhost:3000
+- url: http://35.161.77.27
   variables:
     defaultHost:
-      default: http://localhost:3000
+      default: http://35.161.77.27/
