@@ -4,61 +4,262 @@ info:
   title: Bloggit V1
   version: v1
 paths:
-  "/this_is_path":
-    post:
-      summary: this_is_post
+  "/blogs/":
+    get:
+      summary: List all published blogs
       tags:
-      - This_is_tag
+      - Admin
+      - Normal User
+      parameters:
+      - name: search
+        in: query
+        description: Search term of filtering blogs
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page number of pagination
+        minimum: 1
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Returns a list of published blogs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        title:
+                          type: string
+                        content:
+                          type: string
+                      required:
+                      - id
+                      - title
+                      - content
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                      total_pages:
+                        type: integer
+                      total_count:
+                        type: integer
+                    required:
+                    - current_page
+                    - total_pages
+                    - total_count
+                required:
+                - data
+                - meta
+        '404':
+          description: Page Overflow Error
+        '400':
+          description: Invalid Page Number
+    post:
+      summary: Create a new blog
+      tags:
+      - Admin
       parameters: []
       responses:
         '201':
-          description: blog created
+          description: Blog created successfully
         '422':
-          description: invalid request
+          description: Blog creation failed
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                title:
-                  type: string
-                content:
-                  type: string
+                blog:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                    content:
+                      type: string
+                    archived:
+                      type: boolean
+                    published_at:
+                      type: string
+                      format: date-time
+                  required:
+                  - title
+                  - content
               required:
-              - title
-              - content
-  "/blogs/{id}":
+              - blog
+  "/blogs/scheduled":
     get:
-      summary: Retrieves a blog
+      summary: List all scheduled blogs
       tags:
-      - Blogs
-      - Another Tag
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+      - Admin
       responses:
         '200':
-          description: blog found
+          description: Returns a list of scheduled blogs
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  id:
-                    type: integer
-                  title:
-                    type: string
-                  content:
-                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        title:
+                          type: string
+                        content:
+                          type: string
+                      required:
+                      - id
+                      - title
+                      - content
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                      total_pages:
+                        type: integer
+                      total_count:
+                        type: integer
+                    required:
+                    - current_page
+                    - total_pages
+                    - total_count
                 required:
-                - id
-                - title
-                - content
-            application/xml:
+                - data
+                - meta
+        '404':
+          description: Page Overflow Error
+        '400':
+          description: Invalid Page Number
+  "/blogs/draft":
+    get:
+      summary: List all draft blogs
+      tags:
+      - Admin
+      responses:
+        '200':
+          description: Returns a list of draft blogs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        title:
+                          type: string
+                        content:
+                          type: string
+                      required:
+                      - id
+                      - title
+                      - content
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                      total_pages:
+                        type: integer
+                      total_count:
+                        type: integer
+                    required:
+                    - current_page
+                    - total_pages
+                    - total_count
+                required:
+                - data
+                - meta
+        '404':
+          description: Page Overflow Error
+        '400':
+          description: Invalid Page Number
+  "/blogs/archived":
+    get:
+      summary: List all archived blogs
+      tags:
+      - Admin
+      responses:
+        '200':
+          description: Returns a list of archived blogs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        title:
+                          type: string
+                        content:
+                          type: string
+                      required:
+                      - id
+                      - title
+                      - content
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                      total_pages:
+                        type: integer
+                      total_count:
+                        type: integer
+                    required:
+                    - current_page
+                    - total_pages
+                    - total_count
+                required:
+                - data
+                - meta
+        '404':
+          description: Page Overflow Error
+        '400':
+          description: Invalid Page Number
+  "/blogs/{id}":
+    get:
+      summary: Show a blog
+      tags:
+      - Admin
+      - Normal User
+      parameters:
+      - name: id
+        in: path
+        description: Blog ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Returns a blog
+          content:
+            application/json:
               schema:
                 type: object
                 properties:
@@ -76,8 +277,64 @@ paths:
           description: blog not found
         '406':
           description: unsupported accept header
+    put:
+      summary: Update a blog
+      tags:
+      - Blogs
+      parameters:
+      - name: id
+        in: path
+        description: Blog ID
+        required: true
+        schema:
+          type: integer
+      responses:
+        '202':
+          description: Blog updated successfully
+        '422':
+          description: Blog update failed
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                blog:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                    content:
+                      type: string
+                    archived:
+                      type: boolean
+                    published_at:
+                      type: string
+                      format: date-time
+                  required:
+                  - title
+                  - content
+              required:
+              - blog
+  "/blogs/{id}/archive":
+    parameters:
+    - name: id
+      in: path
+      description: Blog ID
+      required: true
+      schema:
+        type: integer
+    patch:
+      summary: Archive a blog
+      tags:
+      - Admin
+      responses:
+        '202':
+          description: Blog archived successfully
+        '422':
+          description: Blog archive failed
 servers:
-- url: http://35.161.77.27/blogs
+- url: http://35.161.77.27
   variables:
     defaultHost:
-      default: http://35.161.77.27/blogs
+      default: http://35.161.77.27/

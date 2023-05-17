@@ -24,10 +24,10 @@ RSpec.configure do |config|
       paths: {},
       servers: [
         {
-          url: 'http://35.161.77.27/blogs',
+          url: 'http://35.161.77.27',
           variables: {
             defaultHost: {
-              default: 'http://35.161.77.27/blogs'
+              default: 'http://35.161.77.27/'
             }
           }
         }
