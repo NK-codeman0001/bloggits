@@ -391,7 +391,7 @@ RSpec.describe 'api/blogs', type: :request do
   # Not working
 
   put 'Update a blog' do
-    tags 'Blogs'
+    tags 'Admin'
     consumes 'application/json'
     parameter name: :id, in: :path, type: :integer, description: 'Blog ID'
     parameter name: :blog_params, in: :body, schema: {

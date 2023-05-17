@@ -280,7 +280,7 @@ paths:
     put:
       summary: Update a blog
       tags:
-      - Blogs
+      - Admin
       parameters:
       - name: id
         in: path
@@ -334,7 +334,7 @@ paths:
         '422':
           description: Blog archive failed
 servers:
-- url: http://35.161.77.27
+- url: http://localhost:3000
   variables:
     defaultHost:
-      default: http://35.161.77.27/
+      default: http://localhost:3000
