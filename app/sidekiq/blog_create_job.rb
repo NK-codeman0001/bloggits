@@ -4,8 +4,8 @@ class BlogCreateJob
   def perform(blog_params)
     # Do something
     blog = Blog.new(blog_params)
+    blog.slug = blog.title.parameterize
     # return if blog.save?
-    blog.save
-    blog.title
+    blog.save!
   end
 end

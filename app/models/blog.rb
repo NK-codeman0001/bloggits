@@ -1,4 +1,12 @@
 class Blog < ApplicationRecord
+  
+  extend FriendlyId
+  friendly_id :title, use: [:slugged, :history]
+
+  # def should_generate_new_friendly_id?
+  #   new_record?
+  # end
+
   has_rich_text :content
   has_many :comments
 

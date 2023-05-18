@@ -3,8 +3,10 @@ class BlogUpdateJob
 
   def perform(blog_id, params)
     # Do something
-    blog = Blog.find(blog_id)
+    blog = Blog.friendly.find(blog_id)
     blog.update(params)
+    blog.slug = blog.title.parameterize
+    blog.save!
 
   end
 end

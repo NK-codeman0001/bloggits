@@ -3,7 +3,7 @@ class BlogArchiveJob
 
   def perform(blog_id)
     # Do something
-    blog = Blog.find(blog_id)
+    blog = Blog.friendly.find(blog_id)
     blog.toggle!(:archived)
     blog.save
   end

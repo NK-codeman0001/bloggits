@@ -107,3 +107,5 @@ gem 'rswag'
 gem "rails_admin", "~> 3.1"
 gem "sassc-rails"
 gem "cssbundling-rails"
+
+gem "friendly_id", "~> 5.5"

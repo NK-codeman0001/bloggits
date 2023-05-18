@@ -66,6 +66,9 @@ class BlogsController < ApplicationController
   end
 
   def show
+    if request.path != blog_path(@blog)
+      redirect_to @blog, status: :moved_permanently
+    end
       respond_to do |format|
         format.html
         format.json { render json: @blog}
@@ -157,7 +160,7 @@ class BlogsController < ApplicationController
   end
 
   def set_blog
-    @blog = user_signed_in? ? Blog.find(params[:id]) : Blog.published.find(params[:id])
+    @blog = user_signed_in? ? Blog.friendly.find(params[:id]) : Blog.friendly.published.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     # render :json => { :error => "Record Not Found"}, :status => 404
     redirect_to root_path, :status => 404
