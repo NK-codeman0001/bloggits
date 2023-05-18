@@ -103,3 +103,7 @@ gem "mechanize", "~> 2.9"
 gem "active_model_serializers", "~> 0.10.13"
 
 gem 'rswag'
+
+gem "rails_admin", "~> 3.1"
+gem "sassc-rails"
+gem "cssbundling-rails"

@@ -2,6 +2,7 @@ require 'sidekiq/web'
 
 
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
   authenticate :user, lambda { |u| u.is_admin? } do
     mount Rswag::Ui::Engine => '/api-docs'

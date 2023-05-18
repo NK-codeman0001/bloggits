@@ -110,3 +110,5 @@ ready = function () {
 // $(document).ready(ready);
 $(document).on("turbo:load", ready);
 
+import "trix"
+import "@rails/actiontext"
