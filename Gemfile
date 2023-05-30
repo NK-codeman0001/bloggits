@@ -109,3 +109,7 @@ gem "sassc-rails"
 gem "cssbundling-rails"
 
 gem "friendly_id", "~> 5.5"
+
+gem "searchkick", "~> 5.2"
+
+gem "elasticsearch", "~> 8.7"
