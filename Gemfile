@@ -111,3 +111,5 @@ gem "cssbundling-rails"
 gem "friendly_id", "~> 5.5"
 
 gem "omniauth-google-oauth2", "~> 1.1"
+
+gem "omniauth-facebook", "~> 9.0"

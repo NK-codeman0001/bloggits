@@ -276,7 +276,7 @@ Devise.setup do |config|
 
   config.omniauth :google_oauth2, Rails.application.credentials.fetch(:google_client_id), Rails.application.credentials.fetch(:google_client_secret)
 
-
+  config.omniauth :facebook, Rails.application.credentials.fetch(:facebook_app_id), Rails.application.credentials.fetch(:facebook_app_secret)
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
