@@ -12,6 +12,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
   alias_method :twitter, :all
+  alias_method :google_oauth2, :all
   
   # def twitter
   #   # You need to implement the method below in your model (e.g. app/models/user.rb)

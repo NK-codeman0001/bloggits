@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_many :comments
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :recoverable, :rememberable, :registerable,  :validatable, :omniauthable, omniauth_providers: %i[twitter]
+  devise :database_authenticatable, :recoverable, :rememberable, :registerable,  :validatable, :omniauthable, omniauth_providers: %i[twitter google_oauth2]
   
 
   validates :username, presence: true, uniqueness: true
@@ -30,7 +30,11 @@ class User < ApplicationRecord
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
-      user.username = auth.info.nickname
+      if user.provider == "google_oauth2"
+        user.username = auth.info.email.split('@').first
+      else
+        user.username = auth.info.nickname
+      end
       user.email = auth.info.email
 
     end
