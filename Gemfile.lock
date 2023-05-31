@@ -111,6 +111,14 @@ GEM
     diff-lcs (1.5.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    elastic-transport (8.2.1)
+      faraday (< 3)
+      multi_json
+    elasticsearch (8.7.1)
+      elastic-transport (~> 8)
+      elasticsearch-api (= 8.7.1)
+    elasticsearch-api (8.7.1)
+      multi_json
     erubi (1.12.0)
     faraday (2.7.5)
       faraday-net_http (>= 2.0, < 3.1)
@@ -189,7 +197,11 @@ GEM
     mini_mime (1.1.2)
     minitest (5.18.0)
     msgpack (1.7.0)
+<<<<<<< HEAD
     multi_xml (0.6.0)
+=======
+    multi_json (1.15.0)
+>>>>>>> 970f1fb9c68f2fb555f7a00d84d03d34239fb481
     nested_form (0.3.2)
     net-http-digest_auth (1.4.1)
     net-http-persistent (4.0.2)
@@ -340,6 +352,9 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    searchkick (5.2.4)
+      activemodel (>= 5.2)
+      hashie
     selenium-webdriver (4.9.1)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -410,6 +425,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise (~> 4.9)
+  elasticsearch (~> 8.7)
   foreman (~> 0.87.2)
   friendly_id (~> 5.5)
   image_processing (~> 1.2)
@@ -432,6 +448,7 @@ DEPENDENCIES
   rspec-rails (~> 3.5)
   rswag
   sassc-rails
+  searchkick (~> 5.2)
   selenium-webdriver
   sidekiq (~> 7.1)
   sprockets-rails
