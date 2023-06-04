@@ -56,7 +56,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-
+  gem "dotenv-rails", "~> 2.8"
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
@@ -115,3 +115,4 @@ gem "omniauth-google-oauth2", "~> 1.1"
 gem "omniauth-facebook", "~> 9.0"
 
 gem "omniauth-linkedin-oauth2", "~> 1.0"
+
