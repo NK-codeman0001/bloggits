@@ -51,13 +51,13 @@
            <li>  <%= link_to "Log-In", new_user_session_path, class: "block py-2 pl-3 pr-4 text-gray-400  rounded md:bg-transparent  md:p-0 md:dark:text-blue-500" %></li>
            <li><%= link_to "Sign-Up", new_user_registration_path, class: "block py-2 pl-3 pr-4 text-gray-400  rounded md:bg-transparent  md:p-0 md:dark:text-blue-500" %></li>
 
-           <li><%= button_to "Sign in with Twitter", user_twitter_omniauth_authorize_path, data: { turbo: false }, class: "block py-2 pl-3 pr-4 text-gray-400  rounded md:bg-transparent  md:p-0 md:dark:text-blue-500" %></li>
+           <li><%#= button_to "Sign in with Twitter", user_twitter_omniauth_authorize_path, data: { turbo: false }, class: "block py-2 pl-3 pr-4 text-gray-400  rounded md:bg-transparent  md:p-0 md:dark:text-blue-500" %></li>
 
-           <li><%= button_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path, data: { turbo: false }, class: "block py-2 pl-3 pr-4 text-gray-400  rounded md:bg-transparent  md:p-0 md:dark:text-blue-500" %></li>
+           <li><%#= button_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path, data: { turbo: false }, class: "block py-2 pl-3 pr-4 text-gray-400  rounded md:bg-transparent  md:p-0 md:dark:text-blue-500" %></li>
 
-           <li><%= button_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, data: { turbo: false }, class: "block py-2 pl-3 pr-4 text-gray-400  rounded md:bg-transparent  md:p-0 md:dark:text-blue-500" %></li>
+           <li><%#= button_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, data: { turbo: false }, class: "block py-2 pl-3 pr-4 text-gray-400  rounded md:bg-transparent  md:p-0 md:dark:text-blue-500" %></li>
 
-           <li><%= button_to "Sign in with LinkedIn", user_linkedin_omniauth_authorize_path, data: { turbo: false }, class: "block py-2 pl-3 pr-4 text-gray-400  rounded md:bg-transparent  md:p-0 md:dark:text-blue-500" %></li>
+           <li><%#= button_to "Sign in with LinkedIn", user_linkedin_omniauth_authorize_path, data: { turbo: false }, class: "block py-2 pl-3 pr-4 text-gray-400  rounded md:bg-transparent  md:p-0 md:dark:text-blue-500" %></li>
         <% end %>
      </ul>
    </div>
